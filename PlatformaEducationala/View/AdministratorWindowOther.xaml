@@ -1,0 +1,74 @@
+﻿<Window x:Class="PlatformaEducationala.View.AdministratorWindowOther"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PlatformaEducationala.View"
+        xmlns:vm="clr-namespace:PlatformaEducationala.ViewModel"
+        mc:Ignorable="d"
+        Title="AdministratorWindowOther" Height="450" Width="900">
+    <Window.DataContext>
+        <vm:AdministratorOtherVM />
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0">
+            <Label Content="Gestionare Materii"/>
+            <TextBox Text="{Binding Materie}"/>
+            <CheckBox Content="Teza" IsChecked="{Binding IsTeza}"/>
+            <Button Content="ADD" Command="{Binding AddMaterie}"/>
+            <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Materii}" SelectedItem="{Binding SelectedMaterie, Mode=TwoWay}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="90" Header="Materie ID" Binding="{Binding MaterieId, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                    <DataGridTextColumn Width="90" Header="Denumire" Binding="{Binding Nume, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                    <DataGridTextColumn Width="90" Header="Teza" Binding="{Binding Teza, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                    <DataGridTemplateColumn  Width="90" Header="Edit">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Edit" Command="{Binding DataContext.EditMaterie, RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="90" Header="Delete">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Delete" Command="{Binding DataContext.DeleteMaterie, RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1">
+            <Label Content="Gestionare Specializari"/>
+            <TextBox Text="{Binding Specializare}"/>
+            <Button Content="ADD" Command="{Binding AddSpecializare}"/>
+            <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Specializari}" SelectedItem="{Binding SelectedSpecializare, Mode=TwoWay}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="90" Header="Specializare ID" Binding="{Binding SpecializareId, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                    <DataGridTextColumn Width="90" Header="Denumire" Binding="{Binding Nume, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                    <DataGridTemplateColumn  Width="90" Header="Edit">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Edit" Command="{Binding DataContext.EditSpecializare, RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="90" Header="Delete">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Delete" Command="{Binding DataContext.DeleteSpecializare, RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+
+    </Grid>
+</Window>

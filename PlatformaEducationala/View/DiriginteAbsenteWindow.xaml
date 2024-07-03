@@ -1,0 +1,116 @@
+﻿<Window x:Class="PlatformaEducationala.View.DiriginteAbsenteWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PlatformaEducationala.View"
+        xmlns:vm="clr-namespace:PlatformaEducationala.ViewModel"
+        mc:Ignorable="d"
+        Title="DiriginteAbsenteWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <vm:DiriginteAbsenteVM />
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <!-- First row -->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0">
+                <Label Content="Elevi"/>
+                <DataGrid ItemsSource="{Binding Studenti}" SelectedItem="{Binding SelectedStudent}" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Student ID" Binding="{Binding UtilizatorId}" />
+                        <DataGridTextColumn Header="Nume" Binding="{Binding Nume}" />
+                        <DataGridTextColumn Header="NumeUtilizator" Binding="{Binding NumeUtilizator}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+
+            </StackPanel>
+
+            <StackPanel Grid.Column="1">
+                <Label Content="Absente" />
+                <DataGrid ItemsSource="{Binding Absente}" SelectedItem="{Binding SelectedAbsenta}" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Absenta ID" Binding="{Binding AbsentaId}" />
+                        <DataGridTextColumn Header="Materie ID" Binding="{Binding MaterieId}" />
+                        <DataGridTextColumn Header="Data" Binding="{Binding Data}" />
+                        <DataGridCheckBoxColumn Header="Motivata" Binding="{Binding Motivata}" />
+
+                        <DataGridTemplateColumn Header="Motiveaza">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="MOTIVEAZA"  Command="{Binding DataContext.MotiveazaAbsenta, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}"  />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+            </StackPanel>
+
+            <!-- Empty column -->
+            <GridSplitter Grid.Column="2" Width="1" Background="Transparent" />
+            <StackPanel Grid.Column="2">
+                <Label Content="Semestru" />
+                <ComboBox ItemsSource="{Binding Semestre}" SelectedItem="{Binding SelectedSemester}"/>
+            </StackPanel>
+
+        </Grid>
+
+        <!-- Second row -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0">
+                <Label Content="Materii"/>
+                <DataGrid ItemsSource="{Binding Materii}" SelectedItem="{Binding SelectedMaterie}" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Nume" Binding="{Binding Nume}"/>
+                        <DataGridTextColumn Header="Materie ID" Binding="{Binding MaterieId}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1">
+                <Label Content="Absente Motivate" />
+                <DataGrid ItemsSource="{Binding AbsenteMotivate}" SelectedItem="{Binding SelectedAbsentaMotivata}" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Absenta ID" Binding="{Binding AbsentaId}" />
+                        <DataGridTextColumn Header="Materie ID" Binding="{Binding MaterieId}" />
+                        <DataGridTextColumn Header="Data" Binding="{Binding Data}" />
+                        <DataGridTextColumn Header="Semestru" Binding="{Binding Semestru}" />
+                        <DataGridCheckBoxColumn Header="Motivata" Binding="{Binding Motivata}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2">
+                <Label Content="Absente Nemotivate"/>
+                <DataGrid ItemsSource="{Binding AbsenteNemotivate}" SelectedItem="{Binding SelectedAbsentaNemotivata}" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Absenta ID" Binding="{Binding AbsentaId}" />
+                        <DataGridTextColumn Header="Materie ID" Binding="{Binding MaterieId}" />
+                        <DataGridTextColumn Header="Data" Binding="{Binding Data}" />
+                        <DataGridTextColumn Header="Semestru" Binding="{Binding Semestru}" />
+                        <DataGridCheckBoxColumn Header="Motivata" Binding="{Binding Motivata}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+            
+        </Grid>
+    </Grid>
+
+</Window>

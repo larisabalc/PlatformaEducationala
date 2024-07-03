@@ -1,0 +1,1973 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MVP_PlatformaEducationalaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Absenta">
+          <Key>
+            <PropertyRef Name="AbsentaId" />
+          </Key>
+          <Property Name="AbsentaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaterieId" Type="int" Nullable="false" />
+          <Property Name="Data" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Semestru" Type="int" Nullable="false" />
+          <Property Name="Nemotivata" Type="bit" Nullable="false" />
+          <Property Name="Motivata" Type="bit" Nullable="false" />
+          <Property Name="StudentId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Clasa">
+          <Key>
+            <PropertyRef Name="ClasaId" />
+          </Key>
+          <Property Name="ClasaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SpecializareId" Type="int" Nullable="false" />
+          <Property Name="An" Type="int" Nullable="false" />
+          <Property Name="Nume" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Diriginte_Clasa">
+          <Key>
+            <PropertyRef Name="DiriginteId" />
+            <PropertyRef Name="ClasaId" />
+          </Key>
+          <Property Name="DiriginteId" Type="int" Nullable="false" />
+          <Property Name="ClasaId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Materie">
+          <Key>
+            <PropertyRef Name="MaterieId" />
+          </Key>
+          <Property Name="MaterieId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nume" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Teza" Type="bit" />
+        </EntityType>
+        <EntityType Name="Materie_Clasa">
+          <Key>
+            <PropertyRef Name="MaterieId" />
+            <PropertyRef Name="ClasaId" />
+          </Key>
+          <Property Name="MaterieId" Type="int" Nullable="false" />
+          <Property Name="ClasaId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Materie_Profesor">
+          <Key>
+            <PropertyRef Name="MaterieId" />
+            <PropertyRef Name="ProfesorId" />
+          </Key>
+          <Property Name="MaterieId" Type="int" Nullable="false" />
+          <Property Name="ProfesorId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Medie">
+          <Key>
+            <PropertyRef Name="MedieId" />
+          </Key>
+          <Property Name="MedieId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Valoare" Type="float" Nullable="false" />
+          <Property Name="Semestru" Type="int" Nullable="false" />
+          <Property Name="MaterieId" Type="int" Nullable="false" />
+          <Property Name="StudentId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Nota">
+          <Key>
+            <PropertyRef Name="NotaId" />
+          </Key>
+          <Property Name="NotaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaterieId" Type="int" Nullable="false" />
+          <Property Name="Valoare" Type="int" Nullable="false" />
+          <Property Name="Data" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Semestru" Type="int" Nullable="false" />
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="EsteTeza" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Profesor_Clasa">
+          <Key>
+            <PropertyRef Name="ProfesorId" />
+            <PropertyRef Name="ClasaId" />
+          </Key>
+          <Property Name="ProfesorId" Type="int" Nullable="false" />
+          <Property Name="ClasaId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Specializare">
+          <Key>
+            <PropertyRef Name="SpecializareId" />
+          </Key>
+          <Property Name="SpecializareId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nume" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Student_Clasa">
+          <Key>
+            <PropertyRef Name="StudentId" />
+            <PropertyRef Name="ClasaId" />
+          </Key>
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="ClasaId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TipUtilizator">
+          <Key>
+            <PropertyRef Name="TipUtilizatorId" />
+          </Key>
+          <Property Name="TipUtilizatorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nume" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Utilizator">
+          <Key>
+            <PropertyRef Name="UtilizatorId" />
+          </Key>
+          <Property Name="UtilizatorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nume" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NumeUtilizator" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Parola" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TipUtilizatorId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Clasa_Diriginte_Clasa1">
+          <End Role="Clasa" Type="Self.Clasa" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Diriginte_Clasa" Type="Self.Diriginte_Clasa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clasa">
+              <PropertyRef Name="ClasaId" />
+            </Principal>
+            <Dependent Role="Diriginte_Clasa">
+              <PropertyRef Name="ClasaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clasa_Materie_Clasa">
+          <End Role="Clasa" Type="Self.Clasa" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Materie_Clasa" Type="Self.Materie_Clasa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clasa">
+              <PropertyRef Name="ClasaId" />
+            </Principal>
+            <Dependent Role="Materie_Clasa">
+              <PropertyRef Name="ClasaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clasa_Profesor_Clasa">
+          <End Role="Clasa" Type="Self.Clasa" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Profesor_Clasa" Type="Self.Profesor_Clasa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clasa">
+              <PropertyRef Name="ClasaId" />
+            </Principal>
+            <Dependent Role="Profesor_Clasa">
+              <PropertyRef Name="ClasaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clasa_Student_Clasa">
+          <End Role="Clasa" Type="Self.Clasa" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Student_Clasa" Type="Self.Student_Clasa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clasa">
+              <PropertyRef Name="ClasaId" />
+            </Principal>
+            <Dependent Role="Student_Clasa">
+              <PropertyRef Name="ClasaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Diriginte_Diriginte_Clasa">
+          <End Role="Utilizator" Type="Self.Utilizator" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Diriginte_Clasa" Type="Self.Diriginte_Clasa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilizator">
+              <PropertyRef Name="UtilizatorId" />
+            </Principal>
+            <Dependent Role="Diriginte_Clasa">
+              <PropertyRef Name="DiriginteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Materie_Absenta">
+          <End Role="Materie" Type="Self.Materie" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Absenta" Type="Self.Absenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materie">
+              <PropertyRef Name="MaterieId" />
+            </Principal>
+            <Dependent Role="Absenta">
+              <PropertyRef Name="MaterieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Materie_Materie_Clasa">
+          <End Role="Materie" Type="Self.Materie" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Materie_Clasa" Type="Self.Materie_Clasa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materie">
+              <PropertyRef Name="MaterieId" />
+            </Principal>
+            <Dependent Role="Materie_Clasa">
+              <PropertyRef Name="MaterieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Materie_Materie_Profesor">
+          <End Role="Materie" Type="Self.Materie" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Materie_Profesor" Type="Self.Materie_Profesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materie">
+              <PropertyRef Name="MaterieId" />
+            </Principal>
+            <Dependent Role="Materie_Profesor">
+              <PropertyRef Name="MaterieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Materie_Medie">
+          <End Role="Materie" Type="Self.Materie" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Medie" Type="Self.Medie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materie">
+              <PropertyRef Name="MaterieId" />
+            </Principal>
+            <Dependent Role="Medie">
+              <PropertyRef Name="MaterieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Materie_Nota">
+          <End Role="Materie" Type="Self.Materie" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Nota" Type="Self.Nota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materie">
+              <PropertyRef Name="MaterieId" />
+            </Principal>
+            <Dependent Role="Nota">
+              <PropertyRef Name="MaterieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Profesor_Materie_Profesor">
+          <End Role="Utilizator" Type="Self.Utilizator" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Materie_Profesor" Type="Self.Materie_Profesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilizator">
+              <PropertyRef Name="UtilizatorId" />
+            </Principal>
+            <Dependent Role="Materie_Profesor">
+              <PropertyRef Name="ProfesorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Profesor_Profesor_Clasa">
+          <End Role="Utilizator" Type="Self.Utilizator" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Profesor_Clasa" Type="Self.Profesor_Clasa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilizator">
+              <PropertyRef Name="UtilizatorId" />
+            </Principal>
+            <Dependent Role="Profesor_Clasa">
+              <PropertyRef Name="ProfesorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Specializare_Clasa">
+          <End Role="Specializare" Type="Self.Specializare" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Clasa" Type="Self.Clasa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Specializare">
+              <PropertyRef Name="SpecializareId" />
+            </Principal>
+            <Dependent Role="Clasa">
+              <PropertyRef Name="SpecializareId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Absenta">
+          <End Role="Utilizator" Type="Self.Utilizator" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Absenta" Type="Self.Absenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilizator">
+              <PropertyRef Name="UtilizatorId" />
+            </Principal>
+            <Dependent Role="Absenta">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Nota">
+          <End Role="Utilizator" Type="Self.Utilizator" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Nota" Type="Self.Nota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilizator">
+              <PropertyRef Name="UtilizatorId" />
+            </Principal>
+            <Dependent Role="Nota">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Student_Clasa">
+          <End Role="Utilizator" Type="Self.Utilizator" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Student_Clasa" Type="Self.Student_Clasa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilizator">
+              <PropertyRef Name="UtilizatorId" />
+            </Principal>
+            <Dependent Role="Student_Clasa">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TipUtilizator_Utilizator">
+          <End Role="TipUtilizator" Type="Self.TipUtilizator" Multiplicity="1" />
+          <End Role="Utilizator" Type="Self.Utilizator" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipUtilizator">
+              <PropertyRef Name="TipUtilizatorId" />
+            </Principal>
+            <Dependent Role="Utilizator">
+              <PropertyRef Name="TipUtilizatorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Utilizator_Medie">
+          <End Role="Utilizator" Type="Self.Utilizator" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Medie" Type="Self.Medie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilizator">
+              <PropertyRef Name="UtilizatorId" />
+            </Principal>
+            <Dependent Role="Medie">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="AddAbsenta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="subjectId" Type="int" Mode="In" />
+          <Parameter Name="date" Type="varchar" Mode="In" />
+          <Parameter Name="semester" Type="int" Mode="In" />
+          <Parameter Name="canBeMotivata" Type="bit" Mode="In" />
+          <Parameter Name="excused" Type="bit" Mode="In" />
+          <Parameter Name="studentId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="AddClasa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="specializationId" Type="int" Mode="In" />
+          <Parameter Name="year" Type="int" Mode="In" />
+          <Parameter Name="name" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="AddDiriginteClasaLink" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="classMasterId" Type="int" Mode="In" />
+          <Parameter Name="classroomId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="AddMaterie" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="name" Type="varchar" Mode="In" />
+          <Parameter Name="thesis" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="AddMaterieClasaLink" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="subjectId" Type="int" Mode="In" />
+          <Parameter Name="classroomId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="AddMaterieProfesorLink" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="subjectId" Type="int" Mode="In" />
+          <Parameter Name="teacherId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="AddNota" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="subjectId" Type="int" Mode="In" />
+          <Parameter Name="value" Type="int" Mode="In" />
+          <Parameter Name="date" Type="varchar" Mode="In" />
+          <Parameter Name="semester" Type="int" Mode="In" />
+          <Parameter Name="studentId" Type="int" Mode="In" />
+          <Parameter Name="boolEsteTeza" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="AddProfesorClasaLink" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="teacherId" Type="int" Mode="In" />
+          <Parameter Name="classroomId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="AddSpecializare" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="name" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="AddStudentClasaLink" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="studentId" Type="int" Mode="In" />
+          <Parameter Name="classroomId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="AddTipUtilizator" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="name" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="AddUtilizator" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="name" Type="varchar" Mode="In" />
+          <Parameter Name="username" Type="varchar" Mode="In" />
+          <Parameter Name="password" Type="varchar" Mode="In" />
+          <Parameter Name="typeId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeleteClasa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="classroomId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeleteDiriginteClasaLink" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="classMasterId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeleteMaterie" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="subjectId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeleteMaterieClasaLink" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="subjectId" Type="int" Mode="In" />
+          <Parameter Name="classroomId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeleteMaterieProfesorLink" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="subjectId" Type="int" Mode="In" />
+          <Parameter Name="teacherId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeleteNota" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="markId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeleteProfesorClasaLink" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="teacherId" Type="int" Mode="In" />
+          <Parameter Name="classroomId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeleteSpecializare" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="specializationId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeleteStudentClasaLink" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="studentId" Type="int" Mode="In" />
+          <Parameter Name="classroomId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeleteTipUtilizator" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userTypeId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeleteUtilizator" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ExcuseAbsenta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="absenceId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="GetAbsentasForAMaterie" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="studentId" Type="int" Mode="In" />
+          <Parameter Name="subjectId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetAbsentasForStudentForMaterie" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="studentId" Type="int" Mode="In" />
+          <Parameter Name="subjectId" Type="int" Mode="In" />
+          <Parameter Name="semester" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetAbsentasPerClasa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="classroomId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetAllAbsentasForStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="studentId" Type="int" Mode="In" />
+          <Parameter Name="semester" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetAllClasas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetAllDiriginteClasaLinks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetAllMaterieClasaLinks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetAllMaterieProfesorLinks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetAllMateries" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetAllNotas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetAllProfesorClasaLinks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetAllSpecializares" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetAllStudentClasaLinks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetAllTipUtilizators" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetAllUtilizators" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetClasaIdForStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="studentId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetDiriginteClasa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="teacherId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetMateriesForProfesorForSelectedClasa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="teacherId" Type="int" Mode="In" />
+          <Parameter Name="classroomId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetMateriesFromClasa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="classroomId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetMediesForStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="studentId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetNotasForAMaterie" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="studentId" Type="int" Mode="In" />
+          <Parameter Name="subjectId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetNotasForStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="studentId" Type="int" Mode="In" />
+          <Parameter Name="subjectId" Type="int" Mode="In" />
+          <Parameter Name="semester" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetProfesorsClasas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="teacherId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetStudentsFromClasa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="classroomId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetTipUtilizator" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userTypeId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetUnexcusedAbsentasForStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="studentId" Type="int" Mode="In" />
+          <Parameter Name="semester" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetUnexcusedAbsentasPerClasa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="classroomId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetUtilizator" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="varchar" Mode="In" />
+          <Parameter Name="password" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="MakeMedie" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="semester" Type="int" Mode="In" />
+          <Parameter Name="subjectId" Type="int" Mode="In" />
+          <Parameter Name="studentId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ModifyClasa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="classroomId" Type="int" Mode="In" />
+          <Parameter Name="specializationId" Type="int" Mode="In" />
+          <Parameter Name="year" Type="int" Mode="In" />
+          <Parameter Name="name" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ModifyDiriginteClasaLink" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="classMasterId" Type="int" Mode="In" />
+          <Parameter Name="classroomId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ModifyMaterie" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="subjectId" Type="int" Mode="In" />
+          <Parameter Name="name" Type="varchar" Mode="In" />
+          <Parameter Name="thesis" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="ModifySpecializare" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="specializationId" Type="int" Mode="In" />
+          <Parameter Name="name" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ModifyStudentClasaLink" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="studentId" Type="int" Mode="In" />
+          <Parameter Name="classroomId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ModifyTipUtilizator" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userTypeId" Type="int" Mode="In" />
+          <Parameter Name="name" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ModifyUtilizator" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userId" Type="int" Mode="In" />
+          <Parameter Name="name" Type="varchar" Mode="In" />
+          <Parameter Name="username" Type="varchar" Mode="In" />
+          <Parameter Name="password" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="MVP_PlatformaEducationalaModelStoreContainer">
+          <EntitySet Name="Absenta" EntityType="Self.Absenta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Clasa" EntityType="Self.Clasa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Diriginte_Clasa" EntityType="Self.Diriginte_Clasa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Materie" EntityType="Self.Materie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Materie_Clasa" EntityType="Self.Materie_Clasa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Materie_Profesor" EntityType="Self.Materie_Profesor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Medie" EntityType="Self.Medie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nota" EntityType="Self.Nota" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Profesor_Clasa" EntityType="Self.Profesor_Clasa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Specializare" EntityType="Self.Specializare" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student_Clasa" EntityType="Self.Student_Clasa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipUtilizator" EntityType="Self.TipUtilizator" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Utilizator" EntityType="Self.Utilizator" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Clasa_Diriginte_Clasa1" Association="Self.FK_Clasa_Diriginte_Clasa1">
+            <End Role="Clasa" EntitySet="Clasa" />
+            <End Role="Diriginte_Clasa" EntitySet="Diriginte_Clasa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clasa_Materie_Clasa" Association="Self.FK_Clasa_Materie_Clasa">
+            <End Role="Clasa" EntitySet="Clasa" />
+            <End Role="Materie_Clasa" EntitySet="Materie_Clasa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clasa_Profesor_Clasa" Association="Self.FK_Clasa_Profesor_Clasa">
+            <End Role="Clasa" EntitySet="Clasa" />
+            <End Role="Profesor_Clasa" EntitySet="Profesor_Clasa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clasa_Student_Clasa" Association="Self.FK_Clasa_Student_Clasa">
+            <End Role="Clasa" EntitySet="Clasa" />
+            <End Role="Student_Clasa" EntitySet="Student_Clasa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Diriginte_Diriginte_Clasa" Association="Self.FK_Diriginte_Diriginte_Clasa">
+            <End Role="Utilizator" EntitySet="Utilizator" />
+            <End Role="Diriginte_Clasa" EntitySet="Diriginte_Clasa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Materie_Absenta" Association="Self.FK_Materie_Absenta">
+            <End Role="Materie" EntitySet="Materie" />
+            <End Role="Absenta" EntitySet="Absenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Materie_Materie_Clasa" Association="Self.FK_Materie_Materie_Clasa">
+            <End Role="Materie" EntitySet="Materie" />
+            <End Role="Materie_Clasa" EntitySet="Materie_Clasa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Materie_Materie_Profesor" Association="Self.FK_Materie_Materie_Profesor">
+            <End Role="Materie" EntitySet="Materie" />
+            <End Role="Materie_Profesor" EntitySet="Materie_Profesor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Materie_Medie" Association="Self.FK_Materie_Medie">
+            <End Role="Materie" EntitySet="Materie" />
+            <End Role="Medie" EntitySet="Medie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Materie_Nota" Association="Self.FK_Materie_Nota">
+            <End Role="Materie" EntitySet="Materie" />
+            <End Role="Nota" EntitySet="Nota" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Profesor_Materie_Profesor" Association="Self.FK_Profesor_Materie_Profesor">
+            <End Role="Utilizator" EntitySet="Utilizator" />
+            <End Role="Materie_Profesor" EntitySet="Materie_Profesor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Profesor_Profesor_Clasa" Association="Self.FK_Profesor_Profesor_Clasa">
+            <End Role="Utilizator" EntitySet="Utilizator" />
+            <End Role="Profesor_Clasa" EntitySet="Profesor_Clasa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Specializare_Clasa" Association="Self.FK_Specializare_Clasa">
+            <End Role="Specializare" EntitySet="Specializare" />
+            <End Role="Clasa" EntitySet="Clasa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Absenta" Association="Self.FK_Student_Absenta">
+            <End Role="Utilizator" EntitySet="Utilizator" />
+            <End Role="Absenta" EntitySet="Absenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Nota" Association="Self.FK_Student_Nota">
+            <End Role="Utilizator" EntitySet="Utilizator" />
+            <End Role="Nota" EntitySet="Nota" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Student_Clasa" Association="Self.FK_Student_Student_Clasa">
+            <End Role="Utilizator" EntitySet="Utilizator" />
+            <End Role="Student_Clasa" EntitySet="Student_Clasa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TipUtilizator_Utilizator" Association="Self.FK_TipUtilizator_Utilizator">
+            <End Role="TipUtilizator" EntitySet="TipUtilizator" />
+            <End Role="Utilizator" EntitySet="Utilizator" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Utilizator_Medie" Association="Self.FK_Utilizator_Medie">
+            <End Role="Utilizator" EntitySet="Utilizator" />
+            <End Role="Medie" EntitySet="Medie" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MVP_PlatformaEducationalaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Absenta">
+          <Key>
+            <PropertyRef Name="AbsentaId" />
+          </Key>
+          <Property Name="AbsentaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaterieId" Type="Int32" Nullable="false" />
+          <Property Name="Data" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Semestru" Type="Int32" Nullable="false" />
+          <Property Name="Nemotivata" Type="Boolean" Nullable="false" />
+          <Property Name="Motivata" Type="Boolean" Nullable="false" />
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Materie" Relationship="Self.FK_Materie_Absenta" FromRole="Absenta" ToRole="Materie" />
+          <NavigationProperty Name="Utilizator" Relationship="Self.FK_Student_Absenta" FromRole="Absenta" ToRole="Utilizator" />
+        </EntityType>
+        <EntityType Name="Clasa">
+          <Key>
+            <PropertyRef Name="ClasaId" />
+          </Key>
+          <Property Name="ClasaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SpecializareId" Type="Int32" Nullable="false" />
+          <Property Name="An" Type="Int32" Nullable="false" />
+          <Property Name="Nume" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Specializare" Relationship="Self.FK_Specializare_Clasa" FromRole="Clasa" ToRole="Specializare" />
+          <NavigationProperty Name="Utilizators" Relationship="Self.Diriginte_Clasa" FromRole="Clasa" ToRole="Utilizator" />
+          <NavigationProperty Name="Materies" Relationship="Self.Materie_Clasa" FromRole="Clasa" ToRole="Materie" />
+          <NavigationProperty Name="Utilizators1" Relationship="Self.Profesor_Clasa" FromRole="Clasa" ToRole="Utilizator" />
+          <NavigationProperty Name="Utilizators2" Relationship="Self.Student_Clasa" FromRole="Clasa" ToRole="Utilizator" />
+        </EntityType>
+        <EntityType Name="Materie">
+          <Key>
+            <PropertyRef Name="MaterieId" />
+          </Key>
+          <Property Name="MaterieId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nume" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Teza" Type="Boolean" />
+          <NavigationProperty Name="Absentas" Relationship="Self.FK_Materie_Absenta" FromRole="Materie" ToRole="Absenta" />
+          <NavigationProperty Name="Medies" Relationship="Self.FK_Materie_Medie" FromRole="Materie" ToRole="Medie" />
+          <NavigationProperty Name="Notas" Relationship="Self.FK_Materie_Nota" FromRole="Materie" ToRole="Nota" />
+          <NavigationProperty Name="Clasas" Relationship="Self.Materie_Clasa" FromRole="Materie" ToRole="Clasa" />
+          <NavigationProperty Name="Utilizators" Relationship="Self.Materie_Profesor" FromRole="Materie" ToRole="Utilizator" />
+        </EntityType>
+        <EntityType Name="Medie">
+          <Key>
+            <PropertyRef Name="MedieId" />
+          </Key>
+          <Property Name="MedieId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Valoare" Type="Double" Nullable="false" />
+          <Property Name="Semestru" Type="Int32" Nullable="false" />
+          <Property Name="MaterieId" Type="Int32" Nullable="false" />
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Materie" Relationship="Self.FK_Materie_Medie" FromRole="Medie" ToRole="Materie" />
+          <NavigationProperty Name="Utilizator" Relationship="Self.FK_Utilizator_Medie" FromRole="Medie" ToRole="Utilizator" />
+        </EntityType>
+        <EntityType Name="Nota">
+          <Key>
+            <PropertyRef Name="NotaId" />
+          </Key>
+          <Property Name="NotaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaterieId" Type="Int32" Nullable="false" />
+          <Property Name="Valoare" Type="Int32" Nullable="false" />
+          <Property Name="Data" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Semestru" Type="Int32" Nullable="false" />
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="EsteTeza" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Materie" Relationship="Self.FK_Materie_Nota" FromRole="Nota" ToRole="Materie" />
+          <NavigationProperty Name="Utilizator" Relationship="Self.FK_Student_Nota" FromRole="Nota" ToRole="Utilizator" />
+        </EntityType>
+        <EntityType Name="Specializare">
+          <Key>
+            <PropertyRef Name="SpecializareId" />
+          </Key>
+          <Property Name="SpecializareId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nume" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Clasas" Relationship="Self.FK_Specializare_Clasa" FromRole="Specializare" ToRole="Clasa" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TipUtilizator">
+          <Key>
+            <PropertyRef Name="TipUtilizatorId" />
+          </Key>
+          <Property Name="TipUtilizatorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nume" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Utilizators" Relationship="Self.FK_TipUtilizator_Utilizator" FromRole="TipUtilizator" ToRole="Utilizator" />
+        </EntityType>
+        <EntityType Name="Utilizator">
+          <Key>
+            <PropertyRef Name="UtilizatorId" />
+          </Key>
+          <Property Name="UtilizatorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nume" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NumeUtilizator" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Parola" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TipUtilizatorId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Absentas" Relationship="Self.FK_Student_Absenta" FromRole="Utilizator" ToRole="Absenta" />
+          <NavigationProperty Name="Medies" Relationship="Self.FK_Utilizator_Medie" FromRole="Utilizator" ToRole="Medie" />
+          <NavigationProperty Name="Notas" Relationship="Self.FK_Student_Nota" FromRole="Utilizator" ToRole="Nota" />
+          <NavigationProperty Name="TipUtilizator" Relationship="Self.FK_TipUtilizator_Utilizator" FromRole="Utilizator" ToRole="TipUtilizator" />
+          <NavigationProperty Name="Clasas" Relationship="Self.Diriginte_Clasa" FromRole="Utilizator" ToRole="Clasa" />
+          <NavigationProperty Name="Materies" Relationship="Self.Materie_Profesor" FromRole="Utilizator" ToRole="Materie" />
+          <NavigationProperty Name="Clasas1" Relationship="Self.Profesor_Clasa" FromRole="Utilizator" ToRole="Clasa" />
+          <NavigationProperty Name="Clasas2" Relationship="Self.Student_Clasa" FromRole="Utilizator" ToRole="Clasa" />
+        </EntityType>
+        <Association Name="FK_Materie_Absenta">
+          <End Role="Materie" Type="Self.Materie" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Absenta" Type="Self.Absenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materie">
+              <PropertyRef Name="MaterieId" />
+            </Principal>
+            <Dependent Role="Absenta">
+              <PropertyRef Name="MaterieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Absenta">
+          <End Role="Utilizator" Type="Self.Utilizator" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Absenta" Type="Self.Absenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilizator">
+              <PropertyRef Name="UtilizatorId" />
+            </Principal>
+            <Dependent Role="Absenta">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Specializare_Clasa">
+          <End Role="Specializare" Type="Self.Specializare" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Clasa" Type="Self.Clasa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Specializare">
+              <PropertyRef Name="SpecializareId" />
+            </Principal>
+            <Dependent Role="Clasa">
+              <PropertyRef Name="SpecializareId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Materie_Medie">
+          <End Role="Materie" Type="Self.Materie" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Medie" Type="Self.Medie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materie">
+              <PropertyRef Name="MaterieId" />
+            </Principal>
+            <Dependent Role="Medie">
+              <PropertyRef Name="MaterieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Materie_Nota">
+          <End Role="Materie" Type="Self.Materie" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Nota" Type="Self.Nota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materie">
+              <PropertyRef Name="MaterieId" />
+            </Principal>
+            <Dependent Role="Nota">
+              <PropertyRef Name="MaterieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Utilizator_Medie">
+          <End Role="Utilizator" Type="Self.Utilizator" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Medie" Type="Self.Medie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilizator">
+              <PropertyRef Name="UtilizatorId" />
+            </Principal>
+            <Dependent Role="Medie">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Nota">
+          <End Role="Utilizator" Type="Self.Utilizator" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Nota" Type="Self.Nota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilizator">
+              <PropertyRef Name="UtilizatorId" />
+            </Principal>
+            <Dependent Role="Nota">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TipUtilizator_Utilizator">
+          <End Role="TipUtilizator" Type="Self.TipUtilizator" Multiplicity="1" />
+          <End Role="Utilizator" Type="Self.Utilizator" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipUtilizator">
+              <PropertyRef Name="TipUtilizatorId" />
+            </Principal>
+            <Dependent Role="Utilizator">
+              <PropertyRef Name="TipUtilizatorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Diriginte_Clasa">
+          <End Role="Clasa" Type="Self.Clasa" Multiplicity="*" />
+          <End Role="Utilizator" Type="Self.Utilizator" Multiplicity="*" />
+        </Association>
+        <Association Name="Materie_Clasa">
+          <End Role="Clasa" Type="Self.Clasa" Multiplicity="*" />
+          <End Role="Materie" Type="Self.Materie" Multiplicity="*" />
+        </Association>
+        <Association Name="Materie_Profesor">
+          <End Role="Materie" Type="Self.Materie" Multiplicity="*" />
+          <End Role="Utilizator" Type="Self.Utilizator" Multiplicity="*" />
+        </Association>
+        <Association Name="Profesor_Clasa">
+          <End Role="Clasa" Type="Self.Clasa" Multiplicity="*" />
+          <End Role="Utilizator" Type="Self.Utilizator" Multiplicity="*" />
+        </Association>
+        <Association Name="Student_Clasa">
+          <End Role="Clasa" Type="Self.Clasa" Multiplicity="*" />
+          <End Role="Utilizator" Type="Self.Utilizator" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="MVP_PlatformaEducationalaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Absentas" EntityType="Self.Absenta" />
+          <EntitySet Name="Clasas" EntityType="Self.Clasa" />
+          <EntitySet Name="Materies" EntityType="Self.Materie" />
+          <EntitySet Name="Medies" EntityType="Self.Medie" />
+          <EntitySet Name="Notas" EntityType="Self.Nota" />
+          <EntitySet Name="Specializares" EntityType="Self.Specializare" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="TipUtilizators" EntityType="Self.TipUtilizator" />
+          <EntitySet Name="Utilizators" EntityType="Self.Utilizator" />
+          <AssociationSet Name="FK_Materie_Absenta" Association="Self.FK_Materie_Absenta">
+            <End Role="Materie" EntitySet="Materies" />
+            <End Role="Absenta" EntitySet="Absentas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Absenta" Association="Self.FK_Student_Absenta">
+            <End Role="Utilizator" EntitySet="Utilizators" />
+            <End Role="Absenta" EntitySet="Absentas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Specializare_Clasa" Association="Self.FK_Specializare_Clasa">
+            <End Role="Specializare" EntitySet="Specializares" />
+            <End Role="Clasa" EntitySet="Clasas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Materie_Medie" Association="Self.FK_Materie_Medie">
+            <End Role="Materie" EntitySet="Materies" />
+            <End Role="Medie" EntitySet="Medies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Materie_Nota" Association="Self.FK_Materie_Nota">
+            <End Role="Materie" EntitySet="Materies" />
+            <End Role="Nota" EntitySet="Notas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Utilizator_Medie" Association="Self.FK_Utilizator_Medie">
+            <End Role="Utilizator" EntitySet="Utilizators" />
+            <End Role="Medie" EntitySet="Medies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Nota" Association="Self.FK_Student_Nota">
+            <End Role="Utilizator" EntitySet="Utilizators" />
+            <End Role="Nota" EntitySet="Notas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TipUtilizator_Utilizator" Association="Self.FK_TipUtilizator_Utilizator">
+            <End Role="TipUtilizator" EntitySet="TipUtilizators" />
+            <End Role="Utilizator" EntitySet="Utilizators" />
+          </AssociationSet>
+          <AssociationSet Name="Diriginte_Clasa" Association="Self.Diriginte_Clasa">
+            <End Role="Clasa" EntitySet="Clasas" />
+            <End Role="Utilizator" EntitySet="Utilizators" />
+          </AssociationSet>
+          <AssociationSet Name="Materie_Clasa" Association="Self.Materie_Clasa">
+            <End Role="Clasa" EntitySet="Clasas" />
+            <End Role="Materie" EntitySet="Materies" />
+          </AssociationSet>
+          <AssociationSet Name="Materie_Profesor" Association="Self.Materie_Profesor">
+            <End Role="Materie" EntitySet="Materies" />
+            <End Role="Utilizator" EntitySet="Utilizators" />
+          </AssociationSet>
+          <AssociationSet Name="Profesor_Clasa" Association="Self.Profesor_Clasa">
+            <End Role="Clasa" EntitySet="Clasas" />
+            <End Role="Utilizator" EntitySet="Utilizators" />
+          </AssociationSet>
+          <AssociationSet Name="Student_Clasa" Association="Self.Student_Clasa">
+            <End Role="Clasa" EntitySet="Clasas" />
+            <End Role="Utilizator" EntitySet="Utilizators" />
+          </AssociationSet>
+          <FunctionImport Name="AddAbsenta">
+            <Parameter Name="subjectId" Mode="In" Type="Int32" />
+            <Parameter Name="date" Mode="In" Type="String" />
+            <Parameter Name="semester" Mode="In" Type="Int32" />
+            <Parameter Name="canBeMotivata" Mode="In" Type="Boolean" />
+            <Parameter Name="excused" Mode="In" Type="Boolean" />
+            <Parameter Name="studentId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AddClasa">
+            <Parameter Name="specializationId" Mode="In" Type="Int32" />
+            <Parameter Name="year" Mode="In" Type="Int32" />
+            <Parameter Name="name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AddDiriginteClasaLink">
+            <Parameter Name="classMasterId" Mode="In" Type="Int32" />
+            <Parameter Name="classroomId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AddMaterie">
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="thesis" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="AddMaterieClasaLink">
+            <Parameter Name="subjectId" Mode="In" Type="Int32" />
+            <Parameter Name="classroomId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AddMaterieProfesorLink">
+            <Parameter Name="subjectId" Mode="In" Type="Int32" />
+            <Parameter Name="teacherId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AddNota">
+            <Parameter Name="subjectId" Mode="In" Type="Int32" />
+            <Parameter Name="value" Mode="In" Type="Int32" />
+            <Parameter Name="date" Mode="In" Type="String" />
+            <Parameter Name="semester" Mode="In" Type="Int32" />
+            <Parameter Name="studentId" Mode="In" Type="Int32" />
+            <Parameter Name="boolEsteTeza" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="AddProfesorClasaLink">
+            <Parameter Name="teacherId" Mode="In" Type="Int32" />
+            <Parameter Name="classroomId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AddSpecializare">
+            <Parameter Name="name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AddStudentClasaLink">
+            <Parameter Name="studentId" Mode="In" Type="Int32" />
+            <Parameter Name="classroomId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AddTipUtilizator">
+            <Parameter Name="name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AddUtilizator">
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="typeId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteClasa">
+            <Parameter Name="classroomId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteDiriginteClasaLink">
+            <Parameter Name="classMasterId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteMaterie">
+            <Parameter Name="subjectId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteMaterieClasaLink">
+            <Parameter Name="subjectId" Mode="In" Type="Int32" />
+            <Parameter Name="classroomId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteMaterieProfesorLink">
+            <Parameter Name="subjectId" Mode="In" Type="Int32" />
+            <Parameter Name="teacherId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteNota">
+            <Parameter Name="markId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteProfesorClasaLink">
+            <Parameter Name="teacherId" Mode="In" Type="Int32" />
+            <Parameter Name="classroomId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteSpecializare">
+            <Parameter Name="specializationId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteStudentClasaLink">
+            <Parameter Name="studentId" Mode="In" Type="Int32" />
+            <Parameter Name="classroomId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteTipUtilizator">
+            <Parameter Name="userTypeId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteUtilizator">
+            <Parameter Name="userId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ExcuseAbsenta">
+            <Parameter Name="absenceId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetAbsentasForAMaterie" ReturnType="Collection(MVP_PlatformaEducationalaModel.GetAbsentasForAMaterie_Result)">
+            <Parameter Name="studentId" Mode="In" Type="Int32" />
+            <Parameter Name="subjectId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetAbsentasForStudentForMaterie" ReturnType="Collection(MVP_PlatformaEducationalaModel.GetAbsentasForStudentForMaterie_Result)">
+            <Parameter Name="studentId" Mode="In" Type="Int32" />
+            <Parameter Name="subjectId" Mode="In" Type="Int32" />
+            <Parameter Name="semester" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetAbsentasPerClasa" ReturnType="Collection(MVP_PlatformaEducationalaModel.GetAbsentasPerClasa_Result)">
+            <Parameter Name="classroomId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetAllAbsentasForStudent" ReturnType="Collection(MVP_PlatformaEducationalaModel.GetAllAbsentasForStudent_Result)">
+            <Parameter Name="studentId" Mode="In" Type="Int32" />
+            <Parameter Name="semester" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetAllClasas" ReturnType="Collection(MVP_PlatformaEducationalaModel.GetAllClasas_Result)" />
+          <FunctionImport Name="GetAllDiriginteClasaLinks" ReturnType="Collection(MVP_PlatformaEducationalaModel.GetAllDiriginteClasaLinks_Result)" />
+          <FunctionImport Name="GetAllMaterieClasaLinks" ReturnType="Collection(MVP_PlatformaEducationalaModel.GetAllMaterieClasaLinks_Result)" />
+          <FunctionImport Name="GetAllMaterieProfesorLinks" ReturnType="Collection(MVP_PlatformaEducationalaModel.GetAllMaterieProfesorLinks_Result)" />
+          <FunctionImport Name="GetAllMateries" ReturnType="Collection(MVP_PlatformaEducationalaModel.GetAllMateries_Result)" />
+          <FunctionImport Name="GetAllNotas" ReturnType="Collection(MVP_PlatformaEducationalaModel.GetAllNotas_Result)" />
+          <FunctionImport Name="GetAllProfesorClasaLinks" ReturnType="Collection(MVP_PlatformaEducationalaModel.GetAllProfesorClasaLinks_Result)" />
+          <FunctionImport Name="GetAllSpecializares" ReturnType="Collection(MVP_PlatformaEducationalaModel.GetAllSpecializares_Result)" />
+          <FunctionImport Name="GetAllStudentClasaLinks" ReturnType="Collection(MVP_PlatformaEducationalaModel.GetAllStudentClasaLinks_Result)" />
+          <FunctionImport Name="GetAllTipUtilizators" ReturnType="Collection(MVP_PlatformaEducationalaModel.GetAllTipUtilizators_Result)" />
+          <FunctionImport Name="GetAllUtilizators" ReturnType="Collection(MVP_PlatformaEducationalaModel.GetAllUtilizators_Result)" />
+          <FunctionImport Name="GetClasaIdForStudent" ReturnType="Collection(Int32)">
+            <Parameter Name="studentId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetDiriginteClasa" ReturnType="Collection(MVP_PlatformaEducationalaModel.GetDiriginteClasa_Result)">
+            <Parameter Name="teacherId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetMateriesForProfesorForSelectedClasa" ReturnType="Collection(MVP_PlatformaEducationalaModel.GetMateriesForProfesorForSelectedClasa_Result)">
+            <Parameter Name="teacherId" Mode="In" Type="Int32" />
+            <Parameter Name="classroomId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetMateriesFromClasa" ReturnType="Collection(MVP_PlatformaEducationalaModel.GetMateriesFromClasa_Result)">
+            <Parameter Name="classroomId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetMediesForStudent" ReturnType="Collection(MVP_PlatformaEducationalaModel.GetMediesForStudent_Result)">
+            <Parameter Name="studentId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetNotasForAMaterie" ReturnType="Collection(MVP_PlatformaEducationalaModel.GetNotasForAMaterie_Result)">
+            <Parameter Name="studentId" Mode="In" Type="Int32" />
+            <Parameter Name="subjectId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetNotasForStudent" ReturnType="Collection(MVP_PlatformaEducationalaModel.GetNotasForStudent_Result)">
+            <Parameter Name="studentId" Mode="In" Type="Int32" />
+            <Parameter Name="subjectId" Mode="In" Type="Int32" />
+            <Parameter Name="semester" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetProfesorsClasas" ReturnType="Collection(MVP_PlatformaEducationalaModel.GetProfesorsClasas_Result)">
+            <Parameter Name="teacherId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetStudentsFromClasa" ReturnType="Collection(MVP_PlatformaEducationalaModel.GetStudentsFromClasa_Result)">
+            <Parameter Name="classroomId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetTipUtilizator" ReturnType="Collection(String)">
+            <Parameter Name="userTypeId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetUnexcusedAbsentasForStudent" ReturnType="Collection(MVP_PlatformaEducationalaModel.GetUnexcusedAbsentasForStudent_Result)">
+            <Parameter Name="studentId" Mode="In" Type="Int32" />
+            <Parameter Name="semester" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetUnexcusedAbsentasPerClasa" ReturnType="Collection(MVP_PlatformaEducationalaModel.GetUnexcusedAbsentasPerClasa_Result)">
+            <Parameter Name="classroomId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetUtilizator" ReturnType="Collection(MVP_PlatformaEducationalaModel.GetUtilizator_Result)">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="MakeMedie">
+            <Parameter Name="semester" Mode="In" Type="Int32" />
+            <Parameter Name="subjectId" Mode="In" Type="Int32" />
+            <Parameter Name="studentId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ModifyClasa">
+            <Parameter Name="classroomId" Mode="In" Type="Int32" />
+            <Parameter Name="specializationId" Mode="In" Type="Int32" />
+            <Parameter Name="year" Mode="In" Type="Int32" />
+            <Parameter Name="name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ModifyDiriginteClasaLink">
+            <Parameter Name="classMasterId" Mode="In" Type="Int32" />
+            <Parameter Name="classroomId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ModifyMaterie">
+            <Parameter Name="subjectId" Mode="In" Type="Int32" />
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="thesis" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="ModifySpecializare">
+            <Parameter Name="specializationId" Mode="In" Type="Int32" />
+            <Parameter Name="name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ModifyStudentClasaLink">
+            <Parameter Name="studentId" Mode="In" Type="Int32" />
+            <Parameter Name="classroomId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ModifyTipUtilizator">
+            <Parameter Name="userTypeId" Mode="In" Type="Int32" />
+            <Parameter Name="name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ModifyUtilizator">
+            <Parameter Name="userId" Mode="In" Type="Int32" />
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(MVP_PlatformaEducationalaModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(MVP_PlatformaEducationalaModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+        </EntityContainer>
+        <ComplexType Name="GetAbsentasForAMaterie_Result">
+          <Property Type="Int32" Name="AbsentaId" Nullable="false" />
+          <Property Type="Int32" Name="MaterieId" Nullable="false" />
+          <Property Type="String" Name="Data" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Semestru" Nullable="false" />
+          <Property Type="Boolean" Name="Nemotivata" Nullable="false" />
+          <Property Type="Boolean" Name="Motivata" Nullable="false" />
+          <Property Type="Int32" Name="StudentId" Nullable="false" />
+          <Property Type="String" Name="Nume" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetAbsentasForStudentForMaterie_Result">
+          <Property Type="Int32" Name="AbsentaId" Nullable="false" />
+          <Property Type="Int32" Name="MaterieId" Nullable="false" />
+          <Property Type="String" Name="Data" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Semestru" Nullable="false" />
+          <Property Type="Boolean" Name="Nemotivata" Nullable="false" />
+          <Property Type="Boolean" Name="Motivata" Nullable="false" />
+          <Property Type="Int32" Name="StudentId" Nullable="false" />
+          <Property Type="String" Name="Nume" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetAbsentasPerClasa_Result">
+          <Property Type="Int32" Name="AbsentaId" Nullable="false" />
+          <Property Type="Int32" Name="MaterieId" Nullable="false" />
+          <Property Type="String" Name="Data" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Semestru" Nullable="false" />
+          <Property Type="Boolean" Name="Nemotivata" Nullable="false" />
+          <Property Type="Boolean" Name="Motivata" Nullable="false" />
+          <Property Type="Int32" Name="StudentId" Nullable="false" />
+          <Property Type="String" Name="Nume" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetAllAbsentasForStudent_Result">
+          <Property Type="Int32" Name="AbsentaId" Nullable="false" />
+          <Property Type="Int32" Name="MaterieId" Nullable="false" />
+          <Property Type="String" Name="Data" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Semestru" Nullable="false" />
+          <Property Type="Boolean" Name="Nemotivata" Nullable="false" />
+          <Property Type="Boolean" Name="Motivata" Nullable="false" />
+          <Property Type="Int32" Name="StudentId" Nullable="false" />
+          <Property Type="String" Name="Nume" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetAllClasas_Result">
+          <Property Type="Int32" Name="ClasaId" Nullable="false" />
+          <Property Type="Int32" Name="SpecializareId" Nullable="false" />
+          <Property Type="Int32" Name="An" Nullable="false" />
+          <Property Type="String" Name="Nume" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetAllDiriginteClasaLinks_Result">
+          <Property Type="Int32" Name="DiriginteId" Nullable="false" />
+          <Property Type="Int32" Name="ClasaId" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetAllMaterieClasaLinks_Result">
+          <Property Type="Int32" Name="MaterieId" Nullable="false" />
+          <Property Type="Int32" Name="ClasaId" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetAllMaterieProfesorLinks_Result">
+          <Property Type="Int32" Name="MaterieId" Nullable="false" />
+          <Property Type="Int32" Name="ProfesorId" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetAllMateries_Result">
+          <Property Type="Int32" Name="MaterieId" Nullable="false" />
+          <Property Type="String" Name="Nume" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="Teza" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetAllNotas_Result">
+          <Property Type="Int32" Name="NotaId" Nullable="false" />
+          <Property Type="Int32" Name="MaterieId" Nullable="false" />
+          <Property Type="Int32" Name="Valoare" Nullable="false" />
+          <Property Type="String" Name="Data" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Semestru" Nullable="false" />
+          <Property Type="Int32" Name="StudentId" Nullable="false" />
+          <Property Type="String" Name="EsteTeza" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="GetAllProfesorClasaLinks_Result">
+          <Property Type="Int32" Name="ProfesorId" Nullable="false" />
+          <Property Type="Int32" Name="ClasaId" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetAllSpecializares_Result">
+          <Property Type="Int32" Name="SpecializareId" Nullable="false" />
+          <Property Type="String" Name="Nume" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetAllStudentClasaLinks_Result">
+          <Property Type="Int32" Name="StudentId" Nullable="false" />
+          <Property Type="Int32" Name="ClasaId" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetAllTipUtilizators_Result">
+          <Property Type="Int32" Name="TipUtilizatorId" Nullable="false" />
+          <Property Type="String" Name="Nume" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetAllUtilizators_Result">
+          <Property Type="Int32" Name="UtilizatorId" Nullable="false" />
+          <Property Type="String" Name="Nume" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="NumeUtilizator" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Parola" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="TipUtilizatorId" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetDiriginteClasa_Result">
+          <Property Type="Int32" Name="ClasaId" Nullable="false" />
+          <Property Type="Int32" Name="SpecializareId" Nullable="false" />
+          <Property Type="Int32" Name="An" Nullable="false" />
+          <Property Type="String" Name="Nume" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="DiriginteId" Nullable="false" />
+          <Property Type="Int32" Name="ClasaId1" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetMateriesForProfesorForSelectedClasa_Result">
+          <Property Type="Int32" Name="MaterieId" Nullable="false" />
+          <Property Type="String" Name="Nume" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="Teza" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetMateriesFromClasa_Result">
+          <Property Type="Int32" Name="MaterieId" Nullable="false" />
+          <Property Type="String" Name="Nume" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="Teza" Nullable="true" />
+          <Property Type="Int32" Name="MaterieId1" Nullable="false" />
+          <Property Type="Int32" Name="ClasaId" Nullable="false" />
+          <Property Type="Int32" Name="ClasaId1" Nullable="false" />
+          <Property Type="Int32" Name="SpecializareId" Nullable="false" />
+          <Property Type="Int32" Name="An" Nullable="false" />
+          <Property Type="String" Name="Nume1" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetMediesForStudent_Result">
+          <Property Type="Int32" Name="MedieId" Nullable="false" />
+          <Property Type="Double" Name="Valoare" Nullable="false" />
+          <Property Type="Int32" Name="Semestru" Nullable="false" />
+          <Property Type="Int32" Name="MaterieId" Nullable="false" />
+          <Property Type="Int32" Name="StudentId" Nullable="false" />
+          <Property Type="String" Name="Nume" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetNotasForAMaterie_Result">
+          <Property Type="Int32" Name="NotaId" Nullable="false" />
+          <Property Type="Int32" Name="MaterieId" Nullable="false" />
+          <Property Type="Int32" Name="Valoare" Nullable="false" />
+          <Property Type="String" Name="Data" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Semestru" Nullable="false" />
+          <Property Type="Int32" Name="StudentId" Nullable="false" />
+          <Property Type="String" Name="Nume" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="EsteTeza" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="GetNotasForStudent_Result">
+          <Property Type="Int32" Name="NotaId" Nullable="false" />
+          <Property Type="Int32" Name="MaterieId" Nullable="false" />
+          <Property Type="Int32" Name="Valoare" Nullable="false" />
+          <Property Type="String" Name="Data" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Semestru" Nullable="false" />
+          <Property Type="Int32" Name="StudentId" Nullable="false" />
+          <Property Type="String" Name="Nume" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="EsteTeza" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="GetProfesorsClasas_Result">
+          <Property Type="Int32" Name="ClasaId" Nullable="false" />
+          <Property Type="Int32" Name="SpecializareId" Nullable="false" />
+          <Property Type="Int32" Name="An" Nullable="false" />
+          <Property Type="String" Name="Nume" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ProfesorId" Nullable="false" />
+          <Property Type="Int32" Name="ClasaId1" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetStudentsFromClasa_Result">
+          <Property Type="Int32" Name="UtilizatorId" Nullable="false" />
+          <Property Type="String" Name="Nume" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="NumeUtilizator" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Parola" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="TipUtilizatorId" Nullable="false" />
+          <Property Type="Int32" Name="StudentId" Nullable="false" />
+          <Property Type="Int32" Name="ClasaId" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetUnexcusedAbsentasForStudent_Result">
+          <Property Type="Int32" Name="AbsentaId" Nullable="false" />
+          <Property Type="Int32" Name="MaterieId" Nullable="false" />
+          <Property Type="String" Name="Data" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Semestru" Nullable="false" />
+          <Property Type="Boolean" Name="Nemotivata" Nullable="false" />
+          <Property Type="Boolean" Name="Motivata" Nullable="false" />
+          <Property Type="Int32" Name="StudentId" Nullable="false" />
+          <Property Type="String" Name="Nume" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetUnexcusedAbsentasPerClasa_Result">
+          <Property Type="Int32" Name="AbsentaId" Nullable="false" />
+          <Property Type="Int32" Name="MaterieId" Nullable="false" />
+          <Property Type="String" Name="Data" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Semestru" Nullable="false" />
+          <Property Type="Boolean" Name="Nemotivata" Nullable="false" />
+          <Property Type="Boolean" Name="Motivata" Nullable="false" />
+          <Property Type="Int32" Name="StudentId" Nullable="false" />
+          <Property Type="String" Name="Nume" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetUtilizator_Result">
+          <Property Type="Int32" Name="UtilizatorId" Nullable="false" />
+          <Property Type="String" Name="Nume" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="NumeUtilizator" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Parola" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="TipUtilizatorId" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MVP_PlatformaEducationalaModelStoreContainer" CdmEntityContainer="MVP_PlatformaEducationalaEntities">
+          <EntitySetMapping Name="Absentas">
+            <EntityTypeMapping TypeName="MVP_PlatformaEducationalaModel.Absenta">
+              <MappingFragment StoreEntitySet="Absenta">
+                <ScalarProperty Name="AbsentaId" ColumnName="AbsentaId" />
+                <ScalarProperty Name="MaterieId" ColumnName="MaterieId" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Semestru" ColumnName="Semestru" />
+                <ScalarProperty Name="Nemotivata" ColumnName="Nemotivata" />
+                <ScalarProperty Name="Motivata" ColumnName="Motivata" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clasas">
+            <EntityTypeMapping TypeName="MVP_PlatformaEducationalaModel.Clasa">
+              <MappingFragment StoreEntitySet="Clasa">
+                <ScalarProperty Name="ClasaId" ColumnName="ClasaId" />
+                <ScalarProperty Name="SpecializareId" ColumnName="SpecializareId" />
+                <ScalarProperty Name="An" ColumnName="An" />
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Materies">
+            <EntityTypeMapping TypeName="MVP_PlatformaEducationalaModel.Materie">
+              <MappingFragment StoreEntitySet="Materie">
+                <ScalarProperty Name="MaterieId" ColumnName="MaterieId" />
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+                <ScalarProperty Name="Teza" ColumnName="Teza" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Medies">
+            <EntityTypeMapping TypeName="MVP_PlatformaEducationalaModel.Medie">
+              <MappingFragment StoreEntitySet="Medie">
+                <ScalarProperty Name="MedieId" ColumnName="MedieId" />
+                <ScalarProperty Name="Valoare" ColumnName="Valoare" />
+                <ScalarProperty Name="Semestru" ColumnName="Semestru" />
+                <ScalarProperty Name="MaterieId" ColumnName="MaterieId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notas">
+            <EntityTypeMapping TypeName="MVP_PlatformaEducationalaModel.Nota">
+              <MappingFragment StoreEntitySet="Nota">
+                <ScalarProperty Name="NotaId" ColumnName="NotaId" />
+                <ScalarProperty Name="MaterieId" ColumnName="MaterieId" />
+                <ScalarProperty Name="Valoare" ColumnName="Valoare" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Semestru" ColumnName="Semestru" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="EsteTeza" ColumnName="EsteTeza" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Specializares">
+            <EntityTypeMapping TypeName="MVP_PlatformaEducationalaModel.Specializare">
+              <MappingFragment StoreEntitySet="Specializare">
+                <ScalarProperty Name="SpecializareId" ColumnName="SpecializareId" />
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="MVP_PlatformaEducationalaModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipUtilizators">
+            <EntityTypeMapping TypeName="MVP_PlatformaEducationalaModel.TipUtilizator">
+              <MappingFragment StoreEntitySet="TipUtilizator">
+                <ScalarProperty Name="TipUtilizatorId" ColumnName="TipUtilizatorId" />
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Utilizators">
+            <EntityTypeMapping TypeName="MVP_PlatformaEducationalaModel.Utilizator">
+              <MappingFragment StoreEntitySet="Utilizator">
+                <ScalarProperty Name="UtilizatorId" ColumnName="UtilizatorId" />
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+                <ScalarProperty Name="NumeUtilizator" ColumnName="NumeUtilizator" />
+                <ScalarProperty Name="Parola" ColumnName="Parola" />
+                <ScalarProperty Name="TipUtilizatorId" ColumnName="TipUtilizatorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Diriginte_Clasa" TypeName="MVP_PlatformaEducationalaModel.Diriginte_Clasa" StoreEntitySet="Diriginte_Clasa">
+            <EndProperty Name="Clasa">
+              <ScalarProperty Name="ClasaId" ColumnName="ClasaId" />
+            </EndProperty>
+            <EndProperty Name="Utilizator">
+              <ScalarProperty Name="UtilizatorId" ColumnName="DiriginteId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Materie_Clasa" TypeName="MVP_PlatformaEducationalaModel.Materie_Clasa" StoreEntitySet="Materie_Clasa">
+            <EndProperty Name="Clasa">
+              <ScalarProperty Name="ClasaId" ColumnName="ClasaId" />
+            </EndProperty>
+            <EndProperty Name="Materie">
+              <ScalarProperty Name="MaterieId" ColumnName="MaterieId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Materie_Profesor" TypeName="MVP_PlatformaEducationalaModel.Materie_Profesor" StoreEntitySet="Materie_Profesor">
+            <EndProperty Name="Materie">
+              <ScalarProperty Name="MaterieId" ColumnName="MaterieId" />
+            </EndProperty>
+            <EndProperty Name="Utilizator">
+              <ScalarProperty Name="UtilizatorId" ColumnName="ProfesorId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Profesor_Clasa" TypeName="MVP_PlatformaEducationalaModel.Profesor_Clasa" StoreEntitySet="Profesor_Clasa">
+            <EndProperty Name="Clasa">
+              <ScalarProperty Name="ClasaId" ColumnName="ClasaId" />
+            </EndProperty>
+            <EndProperty Name="Utilizator">
+              <ScalarProperty Name="UtilizatorId" ColumnName="ProfesorId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Student_Clasa" TypeName="MVP_PlatformaEducationalaModel.Student_Clasa" StoreEntitySet="Student_Clasa">
+            <EndProperty Name="Clasa">
+              <ScalarProperty Name="ClasaId" ColumnName="ClasaId" />
+            </EndProperty>
+            <EndProperty Name="Utilizator">
+              <ScalarProperty Name="UtilizatorId" ColumnName="StudentId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="AddAbsenta" FunctionName="MVP_PlatformaEducationalaModel.Store.AddAbsenta" />
+          <FunctionImportMapping FunctionImportName="AddClasa" FunctionName="MVP_PlatformaEducationalaModel.Store.AddClasa" />
+          <FunctionImportMapping FunctionImportName="AddDiriginteClasaLink" FunctionName="MVP_PlatformaEducationalaModel.Store.AddDiriginteClasaLink" />
+          <FunctionImportMapping FunctionImportName="AddMaterie" FunctionName="MVP_PlatformaEducationalaModel.Store.AddMaterie" />
+          <FunctionImportMapping FunctionImportName="AddMaterieClasaLink" FunctionName="MVP_PlatformaEducationalaModel.Store.AddMaterieClasaLink" />
+          <FunctionImportMapping FunctionImportName="AddMaterieProfesorLink" FunctionName="MVP_PlatformaEducationalaModel.Store.AddMaterieProfesorLink" />
+          <FunctionImportMapping FunctionImportName="AddNota" FunctionName="MVP_PlatformaEducationalaModel.Store.AddNota" />
+          <FunctionImportMapping FunctionImportName="AddProfesorClasaLink" FunctionName="MVP_PlatformaEducationalaModel.Store.AddProfesorClasaLink" />
+          <FunctionImportMapping FunctionImportName="AddSpecializare" FunctionName="MVP_PlatformaEducationalaModel.Store.AddSpecializare" />
+          <FunctionImportMapping FunctionImportName="AddStudentClasaLink" FunctionName="MVP_PlatformaEducationalaModel.Store.AddStudentClasaLink" />
+          <FunctionImportMapping FunctionImportName="AddTipUtilizator" FunctionName="MVP_PlatformaEducationalaModel.Store.AddTipUtilizator" />
+          <FunctionImportMapping FunctionImportName="AddUtilizator" FunctionName="MVP_PlatformaEducationalaModel.Store.AddUtilizator" />
+          <FunctionImportMapping FunctionImportName="DeleteClasa" FunctionName="MVP_PlatformaEducationalaModel.Store.DeleteClasa" />
+          <FunctionImportMapping FunctionImportName="DeleteDiriginteClasaLink" FunctionName="MVP_PlatformaEducationalaModel.Store.DeleteDiriginteClasaLink" />
+          <FunctionImportMapping FunctionImportName="DeleteMaterie" FunctionName="MVP_PlatformaEducationalaModel.Store.DeleteMaterie" />
+          <FunctionImportMapping FunctionImportName="DeleteMaterieClasaLink" FunctionName="MVP_PlatformaEducationalaModel.Store.DeleteMaterieClasaLink" />
+          <FunctionImportMapping FunctionImportName="DeleteMaterieProfesorLink" FunctionName="MVP_PlatformaEducationalaModel.Store.DeleteMaterieProfesorLink" />
+          <FunctionImportMapping FunctionImportName="DeleteNota" FunctionName="MVP_PlatformaEducationalaModel.Store.DeleteNota" />
+          <FunctionImportMapping FunctionImportName="DeleteProfesorClasaLink" FunctionName="MVP_PlatformaEducationalaModel.Store.DeleteProfesorClasaLink" />
+          <FunctionImportMapping FunctionImportName="DeleteSpecializare" FunctionName="MVP_PlatformaEducationalaModel.Store.DeleteSpecializare" />
+          <FunctionImportMapping FunctionImportName="DeleteStudentClasaLink" FunctionName="MVP_PlatformaEducationalaModel.Store.DeleteStudentClasaLink" />
+          <FunctionImportMapping FunctionImportName="DeleteTipUtilizator" FunctionName="MVP_PlatformaEducationalaModel.Store.DeleteTipUtilizator" />
+          <FunctionImportMapping FunctionImportName="DeleteUtilizator" FunctionName="MVP_PlatformaEducationalaModel.Store.DeleteUtilizator" />
+          <FunctionImportMapping FunctionImportName="ExcuseAbsenta" FunctionName="MVP_PlatformaEducationalaModel.Store.ExcuseAbsenta" />
+          <FunctionImportMapping FunctionImportName="GetAbsentasForAMaterie" FunctionName="MVP_PlatformaEducationalaModel.Store.GetAbsentasForAMaterie">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVP_PlatformaEducationalaModel.GetAbsentasForAMaterie_Result">
+                <ScalarProperty Name="AbsentaId" ColumnName="AbsentaId" />
+                <ScalarProperty Name="MaterieId" ColumnName="MaterieId" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Semestru" ColumnName="Semestru" />
+                <ScalarProperty Name="Nemotivata" ColumnName="Nemotivata" />
+                <ScalarProperty Name="Motivata" ColumnName="Motivata" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAbsentasForStudentForMaterie" FunctionName="MVP_PlatformaEducationalaModel.Store.GetAbsentasForStudentForMaterie">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVP_PlatformaEducationalaModel.GetAbsentasForStudentForMaterie_Result">
+                <ScalarProperty Name="AbsentaId" ColumnName="AbsentaId" />
+                <ScalarProperty Name="MaterieId" ColumnName="MaterieId" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Semestru" ColumnName="Semestru" />
+                <ScalarProperty Name="Nemotivata" ColumnName="Nemotivata" />
+                <ScalarProperty Name="Motivata" ColumnName="Motivata" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAbsentasPerClasa" FunctionName="MVP_PlatformaEducationalaModel.Store.GetAbsentasPerClasa">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVP_PlatformaEducationalaModel.GetAbsentasPerClasa_Result">
+                <ScalarProperty Name="AbsentaId" ColumnName="AbsentaId" />
+                <ScalarProperty Name="MaterieId" ColumnName="MaterieId" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Semestru" ColumnName="Semestru" />
+                <ScalarProperty Name="Nemotivata" ColumnName="Nemotivata" />
+                <ScalarProperty Name="Motivata" ColumnName="Motivata" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAllAbsentasForStudent" FunctionName="MVP_PlatformaEducationalaModel.Store.GetAllAbsentasForStudent">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVP_PlatformaEducationalaModel.GetAllAbsentasForStudent_Result">
+                <ScalarProperty Name="AbsentaId" ColumnName="AbsentaId" />
+                <ScalarProperty Name="MaterieId" ColumnName="MaterieId" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Semestru" ColumnName="Semestru" />
+                <ScalarProperty Name="Nemotivata" ColumnName="Nemotivata" />
+                <ScalarProperty Name="Motivata" ColumnName="Motivata" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAllClasas" FunctionName="MVP_PlatformaEducationalaModel.Store.GetAllClasas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVP_PlatformaEducationalaModel.GetAllClasas_Result">
+                <ScalarProperty Name="ClasaId" ColumnName="ClasaId" />
+                <ScalarProperty Name="SpecializareId" ColumnName="SpecializareId" />
+                <ScalarProperty Name="An" ColumnName="An" />
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAllDiriginteClasaLinks" FunctionName="MVP_PlatformaEducationalaModel.Store.GetAllDiriginteClasaLinks">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVP_PlatformaEducationalaModel.GetAllDiriginteClasaLinks_Result">
+                <ScalarProperty Name="DiriginteId" ColumnName="DiriginteId" />
+                <ScalarProperty Name="ClasaId" ColumnName="ClasaId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAllMaterieClasaLinks" FunctionName="MVP_PlatformaEducationalaModel.Store.GetAllMaterieClasaLinks">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVP_PlatformaEducationalaModel.GetAllMaterieClasaLinks_Result">
+                <ScalarProperty Name="MaterieId" ColumnName="MaterieId" />
+                <ScalarProperty Name="ClasaId" ColumnName="ClasaId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAllMaterieProfesorLinks" FunctionName="MVP_PlatformaEducationalaModel.Store.GetAllMaterieProfesorLinks">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVP_PlatformaEducationalaModel.GetAllMaterieProfesorLinks_Result">
+                <ScalarProperty Name="MaterieId" ColumnName="MaterieId" />
+                <ScalarProperty Name="ProfesorId" ColumnName="ProfesorId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAllMateries" FunctionName="MVP_PlatformaEducationalaModel.Store.GetAllMateries">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVP_PlatformaEducationalaModel.GetAllMateries_Result">
+                <ScalarProperty Name="MaterieId" ColumnName="MaterieId" />
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+                <ScalarProperty Name="Teza" ColumnName="Teza" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAllNotas" FunctionName="MVP_PlatformaEducationalaModel.Store.GetAllNotas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVP_PlatformaEducationalaModel.GetAllNotas_Result">
+                <ScalarProperty Name="NotaId" ColumnName="NotaId" />
+                <ScalarProperty Name="MaterieId" ColumnName="MaterieId" />
+                <ScalarProperty Name="Valoare" ColumnName="Valoare" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Semestru" ColumnName="Semestru" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="EsteTeza" ColumnName="EsteTeza" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAllProfesorClasaLinks" FunctionName="MVP_PlatformaEducationalaModel.Store.GetAllProfesorClasaLinks">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVP_PlatformaEducationalaModel.GetAllProfesorClasaLinks_Result">
+                <ScalarProperty Name="ProfesorId" ColumnName="ProfesorId" />
+                <ScalarProperty Name="ClasaId" ColumnName="ClasaId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAllSpecializares" FunctionName="MVP_PlatformaEducationalaModel.Store.GetAllSpecializares">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVP_PlatformaEducationalaModel.GetAllSpecializares_Result">
+                <ScalarProperty Name="SpecializareId" ColumnName="SpecializareId" />
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAllStudentClasaLinks" FunctionName="MVP_PlatformaEducationalaModel.Store.GetAllStudentClasaLinks">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVP_PlatformaEducationalaModel.GetAllStudentClasaLinks_Result">
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="ClasaId" ColumnName="ClasaId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAllTipUtilizators" FunctionName="MVP_PlatformaEducationalaModel.Store.GetAllTipUtilizators">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVP_PlatformaEducationalaModel.GetAllTipUtilizators_Result">
+                <ScalarProperty Name="TipUtilizatorId" ColumnName="TipUtilizatorId" />
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAllUtilizators" FunctionName="MVP_PlatformaEducationalaModel.Store.GetAllUtilizators">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVP_PlatformaEducationalaModel.GetAllUtilizators_Result">
+                <ScalarProperty Name="UtilizatorId" ColumnName="UtilizatorId" />
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+                <ScalarProperty Name="NumeUtilizator" ColumnName="NumeUtilizator" />
+                <ScalarProperty Name="Parola" ColumnName="Parola" />
+                <ScalarProperty Name="TipUtilizatorId" ColumnName="TipUtilizatorId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetClasaIdForStudent" FunctionName="MVP_PlatformaEducationalaModel.Store.GetClasaIdForStudent" />
+          <FunctionImportMapping FunctionImportName="GetDiriginteClasa" FunctionName="MVP_PlatformaEducationalaModel.Store.GetDiriginteClasa">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVP_PlatformaEducationalaModel.GetDiriginteClasa_Result">
+                <ScalarProperty Name="ClasaId" ColumnName="ClasaId" />
+                <ScalarProperty Name="SpecializareId" ColumnName="SpecializareId" />
+                <ScalarProperty Name="An" ColumnName="An" />
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+                <ScalarProperty Name="DiriginteId" ColumnName="DiriginteId" />
+                <ScalarProperty Name="ClasaId1" ColumnName="ClasaId1" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetMateriesForProfesorForSelectedClasa" FunctionName="MVP_PlatformaEducationalaModel.Store.GetMateriesForProfesorForSelectedClasa">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVP_PlatformaEducationalaModel.GetMateriesForProfesorForSelectedClasa_Result">
+                <ScalarProperty Name="MaterieId" ColumnName="MaterieId" />
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+                <ScalarProperty Name="Teza" ColumnName="Teza" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetMateriesFromClasa" FunctionName="MVP_PlatformaEducationalaModel.Store.GetMateriesFromClasa">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVP_PlatformaEducationalaModel.GetMateriesFromClasa_Result">
+                <ScalarProperty Name="MaterieId" ColumnName="MaterieId" />
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+                <ScalarProperty Name="Teza" ColumnName="Teza" />
+                <ScalarProperty Name="MaterieId1" ColumnName="MaterieId1" />
+                <ScalarProperty Name="ClasaId" ColumnName="ClasaId" />
+                <ScalarProperty Name="ClasaId1" ColumnName="ClasaId1" />
+                <ScalarProperty Name="SpecializareId" ColumnName="SpecializareId" />
+                <ScalarProperty Name="An" ColumnName="An" />
+                <ScalarProperty Name="Nume1" ColumnName="Nume1" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetMediesForStudent" FunctionName="MVP_PlatformaEducationalaModel.Store.GetMediesForStudent">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVP_PlatformaEducationalaModel.GetMediesForStudent_Result">
+                <ScalarProperty Name="MedieId" ColumnName="MedieId" />
+                <ScalarProperty Name="Valoare" ColumnName="Valoare" />
+                <ScalarProperty Name="Semestru" ColumnName="Semestru" />
+                <ScalarProperty Name="MaterieId" ColumnName="MaterieId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetNotasForAMaterie" FunctionName="MVP_PlatformaEducationalaModel.Store.GetNotasForAMaterie">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVP_PlatformaEducationalaModel.GetNotasForAMaterie_Result">
+                <ScalarProperty Name="NotaId" ColumnName="NotaId" />
+                <ScalarProperty Name="MaterieId" ColumnName="MaterieId" />
+                <ScalarProperty Name="Valoare" ColumnName="Valoare" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Semestru" ColumnName="Semestru" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+                <ScalarProperty Name="EsteTeza" ColumnName="EsteTeza" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetNotasForStudent" FunctionName="MVP_PlatformaEducationalaModel.Store.GetNotasForStudent">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVP_PlatformaEducationalaModel.GetNotasForStudent_Result">
+                <ScalarProperty Name="NotaId" ColumnName="NotaId" />
+                <ScalarProperty Name="MaterieId" ColumnName="MaterieId" />
+                <ScalarProperty Name="Valoare" ColumnName="Valoare" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Semestru" ColumnName="Semestru" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+                <ScalarProperty Name="EsteTeza" ColumnName="EsteTeza" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetProfesorsClasas" FunctionName="MVP_PlatformaEducationalaModel.Store.GetProfesorsClasas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVP_PlatformaEducationalaModel.GetProfesorsClasas_Result">
+                <ScalarProperty Name="ClasaId" ColumnName="ClasaId" />
+                <ScalarProperty Name="SpecializareId" ColumnName="SpecializareId" />
+                <ScalarProperty Name="An" ColumnName="An" />
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+                <ScalarProperty Name="ProfesorId" ColumnName="ProfesorId" />
+                <ScalarProperty Name="ClasaId1" ColumnName="ClasaId1" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetStudentsFromClasa" FunctionName="MVP_PlatformaEducationalaModel.Store.GetStudentsFromClasa">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVP_PlatformaEducationalaModel.GetStudentsFromClasa_Result">
+                <ScalarProperty Name="UtilizatorId" ColumnName="UtilizatorId" />
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+                <ScalarProperty Name="NumeUtilizator" ColumnName="NumeUtilizator" />
+                <ScalarProperty Name="Parola" ColumnName="Parola" />
+                <ScalarProperty Name="TipUtilizatorId" ColumnName="TipUtilizatorId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="ClasaId" ColumnName="ClasaId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetTipUtilizator" FunctionName="MVP_PlatformaEducationalaModel.Store.GetTipUtilizator" />
+          <FunctionImportMapping FunctionImportName="GetUnexcusedAbsentasForStudent" FunctionName="MVP_PlatformaEducationalaModel.Store.GetUnexcusedAbsentasForStudent">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVP_PlatformaEducationalaModel.GetUnexcusedAbsentasForStudent_Result">
+                <ScalarProperty Name="AbsentaId" ColumnName="AbsentaId" />
+                <ScalarProperty Name="MaterieId" ColumnName="MaterieId" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Semestru" ColumnName="Semestru" />
+                <ScalarProperty Name="Nemotivata" ColumnName="Nemotivata" />
+                <ScalarProperty Name="Motivata" ColumnName="Motivata" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetUnexcusedAbsentasPerClasa" FunctionName="MVP_PlatformaEducationalaModel.Store.GetUnexcusedAbsentasPerClasa">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVP_PlatformaEducationalaModel.GetUnexcusedAbsentasPerClasa_Result">
+                <ScalarProperty Name="AbsentaId" ColumnName="AbsentaId" />
+                <ScalarProperty Name="MaterieId" ColumnName="MaterieId" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Semestru" ColumnName="Semestru" />
+                <ScalarProperty Name="Nemotivata" ColumnName="Nemotivata" />
+                <ScalarProperty Name="Motivata" ColumnName="Motivata" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetUtilizator" FunctionName="MVP_PlatformaEducationalaModel.Store.GetUtilizator">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVP_PlatformaEducationalaModel.GetUtilizator_Result">
+                <ScalarProperty Name="UtilizatorId" ColumnName="UtilizatorId" />
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+                <ScalarProperty Name="NumeUtilizator" ColumnName="NumeUtilizator" />
+                <ScalarProperty Name="Parola" ColumnName="Parola" />
+                <ScalarProperty Name="TipUtilizatorId" ColumnName="TipUtilizatorId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="MakeMedie" FunctionName="MVP_PlatformaEducationalaModel.Store.MakeMedie" />
+          <FunctionImportMapping FunctionImportName="ModifyClasa" FunctionName="MVP_PlatformaEducationalaModel.Store.ModifyClasa" />
+          <FunctionImportMapping FunctionImportName="ModifyDiriginteClasaLink" FunctionName="MVP_PlatformaEducationalaModel.Store.ModifyDiriginteClasaLink" />
+          <FunctionImportMapping FunctionImportName="ModifyMaterie" FunctionName="MVP_PlatformaEducationalaModel.Store.ModifyMaterie" />
+          <FunctionImportMapping FunctionImportName="ModifySpecializare" FunctionName="MVP_PlatformaEducationalaModel.Store.ModifySpecializare" />
+          <FunctionImportMapping FunctionImportName="ModifyStudentClasaLink" FunctionName="MVP_PlatformaEducationalaModel.Store.ModifyStudentClasaLink" />
+          <FunctionImportMapping FunctionImportName="ModifyTipUtilizator" FunctionName="MVP_PlatformaEducationalaModel.Store.ModifyTipUtilizator" />
+          <FunctionImportMapping FunctionImportName="ModifyUtilizator" FunctionName="MVP_PlatformaEducationalaModel.Store.ModifyUtilizator" />
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="MVP_PlatformaEducationalaModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="MVP_PlatformaEducationalaModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="MVP_PlatformaEducationalaModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="MVP_PlatformaEducationalaModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVP_PlatformaEducationalaModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="MVP_PlatformaEducationalaModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVP_PlatformaEducationalaModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="MVP_PlatformaEducationalaModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="MVP_PlatformaEducationalaModel.Store.sp_upgraddiagrams" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

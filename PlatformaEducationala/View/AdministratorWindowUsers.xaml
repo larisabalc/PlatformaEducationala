@@ -1,0 +1,71 @@
+﻿<Window x:Class="PlatformaEducationala.View.AdministratorWindowUsers"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PlatformaEducationala.View"
+        xmlns:vm="clr-namespace:PlatformaEducationala.ViewModel"
+        mc:Ignorable="d"
+        Title="AdministratorWindow" Height="450" Width="900">
+    <Window.DataContext>
+        <vm:AdministratorVM />
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid Grid.Column="0" ItemsSource="{Binding Users}" AutoGenerateColumns="False"  SelectedItem="{Binding SelectedUser, Mode=TwoWay}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Utilizator ID" Binding="{Binding UtilizatorId, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsReadOnly="False" />
+                <DataGridTextColumn Header="Nume" Binding="{Binding Nume, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsReadOnly="False" />
+                <DataGridTextColumn Header="Nume Utilizator" Binding="{Binding NumeUtilizator, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsReadOnly="False" />
+                <DataGridTextColumn Header="Parola" Binding="{Binding Parola, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsReadOnly="False" />
+                <DataGridTextColumn Header="Tip Utilizator ID" Binding="{Binding TipUtilizatorId, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsReadOnly="False" />
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Edit"  Command="{Binding DataContext.ModifyUser, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" Margin="5"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Delete"  Command="{Binding DataContext.DeleteUser, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" Margin="5"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Grid.Column="1" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Add User" FontWeight="Bold" FontSize="16" Margin="0,0,0,10" Grid.Row="0"/>
+
+            <Label Content="" Grid.Row="1"/>
+
+            <Label Content="Nume" Grid.Row="2"/>
+            <TextBox Text="{Binding Nume, Mode=TwoWay}" Grid.Row="1" Margin="94,26,0,0" Grid.RowSpan="2"/>
+
+            <Label Content="Nume Utilizator" Grid.Row="3"/>
+            <TextBox Text="{Binding NumeUtilizator, Mode=TwoWay}" Grid.Row="2" Margin="94,26,0,0" Grid.RowSpan="2"/>
+
+            <Label Content="Parola" Grid.Row="4"/>
+            <TextBox Text="{Binding Parola, Mode=TwoWay}" Grid.Row="3" Margin="94,26,0,0" Grid.RowSpan="2"/>
+
+            <Label Content="Tip Utilizator ID" Grid.Row="5"/>
+            <ComboBox  ItemsSource="{Binding UserTypes}" SelectedItem="{Binding SelectedUserType}" Grid.Row="4" Margin="94,26,0,0" Grid.RowSpan="2"/>
+
+            <Button Content="Add" Command="{Binding AddUser}" Margin="0,10,0,0" HorizontalAlignment="Center" Grid.Row="6" Width="178"/>
+        </Grid>
+    </Grid>
+</Window>
